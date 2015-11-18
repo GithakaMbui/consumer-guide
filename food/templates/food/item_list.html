@@ -1,0 +1,17 @@
+{% extends 'food/base.html' %}
+
+    {% block content %}
+        {% for cost in costs %}
+
+    <div class="post">
+
+        
+        <h1><a href="">{{ cost.itemname }}</a></h1>
+        <p>PRICE(KSH): {{ cost.unitcost }}</p>
+        <p>{{ cost.location|linebreaks }}</p>
+      </div>
+
+        {% endfor %}
+
+    {% endblock %}
+   
