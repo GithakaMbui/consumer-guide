@@ -13,11 +13,11 @@ def item_list(request):
 
 def post_edit(request):
 	if request.method == "POST":
-	form = CostForm(request.POST)
-	if form.is_valid():
-		post = form.save(commit=FALSE)
-		post.author = request.user
-		post.dateprovided = timezone.now()
-		post.save()
+		form = CostForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.author = request.user
+			post.dateprovided = timezone.now()
+			post.save()
 	
 		return render(request, 'food/post_edit.html', {'form': form})
