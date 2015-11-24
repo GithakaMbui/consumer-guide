@@ -12,7 +12,7 @@ def item_list(request):
 
 
 def post_edit(request):
-	if request.method == "POST":
+	#if request.method == "POST":
 		form = CostForm(request.POST)
 		if form.is_valid():
 			post = form.save(commit=False)
@@ -20,4 +20,7 @@ def post_edit(request):
 			post.dateprovided = timezone.now()
 			post.save()
 	
-		return render(request, 'food/post_edit.html', {'form': form})
+        	return render(request, 'food/post_edit.html', {'form': form})
+
+
+		

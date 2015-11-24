@@ -6,4 +6,4 @@ class CostForm(forms.ModelForm):
 
 	class Meta:
 		model = Costs
-		fields = ('itemname', 'unitcost')
+		fields = ('itemname', 'unitcost', 'retailer')

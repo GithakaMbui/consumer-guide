@@ -9,6 +9,7 @@ class Costs(models.Model):
 	unitcost = models.IntegerField()
 	dateprovided = models.DateTimeField(default = timezone.now)
 	location = models.CharField(max_length=200)
+	retailer = models.CharField(max_length=200, default='Nakumatt')
 	
 
 	def __unicode__(self):
