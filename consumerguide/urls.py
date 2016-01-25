@@ -20,3 +20,4 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('food.urls')),
 ]
+admin.site.site_header = 'Finform Consumer Guide Admin Side'

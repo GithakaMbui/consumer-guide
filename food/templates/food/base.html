@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <html>
-<div class="page-header">
+<div class="page-heade">
     <head>
         <title>Current Food Prices</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -11,14 +11,30 @@
     </head>
 </div>
     <body>
-    <div class="page-header">
+      <div class="page-header">
+
+      {% block navigation %}
+             <ul id="top">
+                <li><a class="{% block home %}{% endblock %}" href="">Home</a></li>
+                <li><a class="{% block item_list %}{% endblock %}" href="/food/item_list/">Item_list</a></li>
+                <li><a class="{% block postnew %}{% endblock %}" href="/post/new">PostNew</a></li>
+                
+             </ul>
+         {% endblock %}
+
+    
         <a href="{% url 'post_edit' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        <h1><a href="/">Prices of Assorted Food Items</a></h1>
+       
     </div>
+
+     <h3><a href="/">Prices of Assorted Food Items</a></h3>
+
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
+
      {% block content %}
+
 
         {% for cost in costs %}
 
