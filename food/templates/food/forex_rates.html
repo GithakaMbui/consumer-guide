@@ -1,0 +1,38 @@
+{% extends 'food/base.html' %}
+
+    {% block content %}
+    {#{{ forexrate }}#}
+        <!-- {% for cost in costs %}
+
+    <div class="post">
+
+        
+        <h1><a href="">{{ cost.itemname }}</a></h1>
+        <p>PRICE(KSH): {{ cost.unitcost }}</p>
+         <p>Retailer: {{ cost.retailer }}</p>
+        <p>{{ cost.location|linebreaks }}</p>
+      </div>
+
+        {% endfor %} -->
+
+
+
+<table class="table">
+<thead><th>Currency Name</th><th>Buying Price</th><th>Selling price</th><th></th></thead>
+{% for forexrates in forexrate %}
+
+    <tr>
+
+        
+        <td>{{ forexrates.currency_name }}</td>
+        <td> {{ forexrates.buying_price }}</td>
+         <td> {{ forexrates.selling_price }}</td>
+       <!-- <td>{{ cost.location|linebreaks }}</td> -->
+</tr>
+
+        {% endfor %}
+</table>
+       
+
+    {% endblock %}
+   

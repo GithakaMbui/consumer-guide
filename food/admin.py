@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Costs
+from .models import UserProfile
 # Register your models here.
 
 class CostAdmin(admin.ModelAdmin):
@@ -13,3 +14,5 @@ class CostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Costs, CostAdmin)
+admin.site.register(UserProfile)
+

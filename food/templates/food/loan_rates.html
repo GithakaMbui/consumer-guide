@@ -1,0 +1,370 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+<title>FINFORM</title>
+<!-- must have -->
+<script type="text/javascript" src="{% static "food/js/jquery-1.7.1.min.js" %}"></script><script type="text/javascript" src="{% static "food/js/jquery-ui-1.8.23.min.js" %}"></script><script type="text/javascript" src="{% static "food/js/bootstrap.js" %}"></script><script src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places&language=en"></script>
+
+<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.validate.js"></script>
+<script type="text/javascript">
+
+var baseurl = "http://www.carpoolingscript.com/demo/";  
+var country = '';
+</script>
+
+<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/home.js"></script>
+<link href="{% static "food/css/style.css" %}" type="text/css" rel="stylesheet" />
+<link href="{% static "food/css/bannerscollection_kenburns.css" %}" type="text/css" rel="stylesheet" />
+<link href="{% static "food/css/bootstrap.css" %}" type="text/css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic' rel='stylesheet' type='text/css'>
+
+
+
+<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.ui.touch-punch.min.js"></script><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/bannerscollection_kenburns.js"></script><!--[if IE]><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/excanvas.compiled"></script><![endif]-->
+<!-- must have -->
+	<script>
+		jQuery(function() {
+			jQuery('#bannerscollection_kenburns_generous').bannerscollection_kenburns({
+				skin: 'generous',
+				responsive:true,
+				width: 1920,
+				height: 680,
+				width100Proc:true,
+				thumbsOnMarginTop:14,
+				thumbsWrapperMarginTop: -110,
+				autoHideBottomNav:false,
+        showBottomNav: false,
+        showCircleTimer:false,
+        showCircleTimerIE8IE7:false,
+        showAllControllers:false
+			});					
+		});
+	</script>
+    <script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.ddslick.js"></script>    <script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/script.js"></script>    
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".my-account-button").click(function(){
+	$(".my-account-details").fadeToggle("fast", function(){
+	  if($(".my-account-details").css('display') == "none")
+		$(".my-account-button").removeClass("active");
+	  else
+		$(".my-account-button").addClass("active");
+	});
+  });
+});
+</script>  
+<link rel="shortcut icon" href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/favicon.ico">  
+  
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=1618861935012037";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
+<style type="text/css"> iframe[id^='twitter-widget-0']{ width:280px !important;} </style>
+
+	<div class="container-fluid pull-top topbg paddingtopbot10">
+  <div class="container">
+    <div class="row">  
+      <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 tophdr"> <a href="/food/index/" id="logo" class="navbar-brand"> <img src="{% static "img/finformlogo.png" %}" alt="logo"" style="width:255px; height:53px;"> </a>  </div>
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">        
+                             <ul class="top-nav new-top-nav">
+             <li> <a href="/food/item_list/" class="top-signup"> FOOD PRICES </a> </li>
+              <li> <a href="/food/loans/" class="top-signup"> LOANS </a> </li>              
+		
+					  <li> <a href="/food/forex_rates/" class="top-signup"> FOREX </a> </li>
+             <li> <a href="/food/register/" class="top-signup"> REGISTER </a> </li>
+             <li> <a href="/food/login/" class=""> LOGIN </a> </li>
+					 
+           				</ul>
+                        </ul>                     
+        </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container-fluid padding0 banner">
+
+    <div id="bannerscollection_kenburns_generous">
+
+    	<div class="myloader"></div>
+        <!-- CONTENT -->
+        <ul class="bannerscollection_kenburns_list">
+
+	       		<li data-initialZoom="1" data-finalZoom="1" data-horizontalPosition="center" data-verticalPosition="left" data-text-id="#bannerscollection_kenburns_photoText1" ><img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/slider001.jpg" alt="" width="2500" height="919" /></li>
+            
+	          <li data-initialZoom="1" data-finalZoom="1" data-horizontalPosition="center" data-verticalPosition="left" data-text-id="#bannerscollection_kenburns_photoText2" ><img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/slider002.jpg" alt="" width="2500" height="919" /></li>
+
+	          <li data-text-id="#bannerscollection_kenburns_photoText3" data-horizontalPosition="center" data-verticalPosition="top" data-initialZoom="1" data-finalZoom="1"><img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/slider003.jpg" alt="" width="2500" height="782" /></li>       
+        
+        </ul>        
+        <!-- TEXTS -->
+
+        <div id="bannerscollection_kenburns_photoText1" class="bannerscollection_kenburns_texts">
+          <div class="bannerscollection_kenburns_text_line textElement11_generousFullWidth" data-initial-left="200" data-initial-top="50" data-final-left="200" data-final-top="320" data-duration="0.5" data-fade-start="0" data-delay="0">Make informed choices as consumer</div>
+       </div>   
+                 
+        <div id="bannerscollection_kenburns_photoText2" class="bannerscollection_kenburns_texts">
+        	<div class="bannerscollection_kenburns_text_line textElement21_generousFullWidth" data-initial-left="200" data-initial-top="50" data-final-left="200" data-final-top="280" data-duration="0.5" data-fade-start="0" data-delay="0.5">Useful and relevant financial info at your fingettips &amp;  <br>economical way!</div>         
+        </div>
+       
+        <div id="bannerscollection_kenburns_photoText3" class="bannerscollection_kenburns_texts">
+       		<div class="bannerscollection_kenburns_text_line textElement31_generousFullWidth" data-initial-left="200" data-initial-top="50" data-final-left="200" data-final-top="320" data-duration="0.5" data-fade-start="0" data-delay="0">Save time and money while shopping</div>
+        </div> 
+    
+                                            
+    
+
+    <div class="bottom-bar padding10">       
+        <div class="search-bar">
+
+	        <h2> Find the various loan rates in banking institutions </h2>
+
+          <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    
+
+<!-- <table class="table"> -->
+<thead><th>Loan Name</th><th> Loan description</th><th>Loan requirements</th><th></th></thead>
+{% for loanrates in loanrate %}
+
+    <tr>
+
+        
+        <td>{{ loanrates.loan_name }}</td>
+        <td> {{ loanrates.loan_description }}</td>
+         <td> {{ loanrates.requirements }}</td>
+       <!-- <td>{{ cost.location|linebreaks }}</td> -->
+</tr>
+
+        {% endfor %}
+</table>
+                    
+                     
+                    
+                  </table>
+        </div>      
+    </div>
+
+</div>  
+</div> 
+ <div class="container-fluid padding0 banner-search">
+
+	    <div class="bottom-bar padding10">  
+
+	      <div class="search-bar">
+
+	        <h2> Find a Ride </h2>
+
+	        <form method="get" id="searchform"  action="http://www.carpoolingscript.com/demo/search">
+            <input type="text" placeholder="From"  name="source" id="source" class="srcdes marker-ico"> 
+            <input type="hidden" name="formlatlng" id="formlatlng"  value=""/>
+            <input type="text"  placeholder="To"   name="destination" id="destination" class="srcdes marker-ico" />
+            <input type="hidden" name="tolatlng" id="tolatlng"  value=""/>
+            <input type="text" placeholder="DD/MM/YYYY" id="journey_dater" class="srcdes cal-ico" onchange="getfrequency();"  name="journey_date" >
+             
+             <input type="hidden" name="frequency" id="frequency"  value=""/>
+			<input type="submit"  value="Search"   class="ind-src-but"/>       
+               </form>
+
+	      </div>     
+
+	    </div>
+
+    </div><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/tinycarousel/jquery.tinycarousel.min.js"></script><link href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/tinycarousel/tinycarousel.css " rel="stylesheet" type="text/css">
+<script>
+$(document).ready(function() {
+$('#slider1').tinycarousel({
+	start: 1, // where should the carousel start?
+	display: 4, // how many blocks do you want to move at a time?
+	axis: 'X', // vertical or horizontal scroller? 'x' or 'y' .
+	controls: true, // show left and right navigation buttons?
+	pager: false, // is there a page number navigation present?
+	interval: true, // move to the next block on interval.
+	intervaltime: 3000, // interval time in milliseconds.
+	animation: true, // false is instant, true is animate.
+	duration: 1000, // how fast must the animation move in milliseconds?
+	callback: null, // function that executes after every move
+	}); 
+});
+</script>
+</head>
+
+<body>
+
+
+<!-- <div class="container-fluid">
+  <div class="container">
+    <div class="row line4 margintop40"></div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="container">
+    <div class="row margintop40">
+      <div class="how-but"> Loan Rates </div>
+      <div class="marginbot10">
+        <div class="how-it-lft fleft dplnon"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/car-img.png"> </div>
+        <div class="how-it-lft fright rrecent how-it">
+          <h4 class="size22 marginbot10"> Forex </h4>
+          <ul class="hw-it-wks">
+            <li>
+              <div class="how-i-img how-search-ico"> </div>
+              <div class="how-i-cnt fright">
+                <h4 class="marginbot10"> Find your Perfect Car Travelers  </h4>
+                <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                           de nomine. Duo Reges:</p>
+              </div>
+            </li>
+            <li>
+              <div class="how-i-img how-contact-ico"> </div>
+              <div class="how-i-cnt fright">
+                <h4 class="marginbot10"> Contact Car Travellers </h4>
+                <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+              </div>
+            </li>
+            <li>
+              <div class="how-i-img how-hire-ico"> </div>
+              <div class="how-i-cnt fright">
+                <h4 class="marginbot10"> Hire with Confidence </h4>
+                <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+              </div>
+            </li>
+          </ul>
+          <div class="how-i-link"> <a href="#" class="cs-blue-bg"> View all Car Travelers </a> <span> or </span> <a href="#" class="cs-grey-bg"> Post a Car </a> </div>
+        </div>
+      </div>
+    </div>
+    <div class="row line4 margintop40 marginbot40"></div>
+    <div class="row">
+      <div class="how-it-lft fright dplnon"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/index-how-it-img.png"> </div>
+      <div class="how-it-lft fleft rrecent how-it">
+        <h4 class="size22 marginbot10"> For Car Travelers </h4>
+        <ul class="hw-it-wks">
+          <li>
+            <div class="how-i-img how-edit-ico"> </div>
+            <div class="how-i-cnt fright">
+              <h4 class="marginbot10"> Create a Profile </h4>
+              <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+            </div>
+          </li>
+          <li>
+            <div class="how-i-img how-job-ico"> </div>
+            <div class="how-i-cnt fright">
+              <h4 class="marginbot10"> Got a Job </h4>
+              <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+            </div>
+          </li>
+          <li>
+            <div class="how-i-img how-star-ico"> </div>
+            <div class="how-i-cnt fright">
+              <h4 class="marginbot10"> Become a Star </h4>
+              <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+            </div>
+          </li>
+        </ul>
+        <div class="row how-i-link"> <a href="#" class="cs-blue-bg"> Create a Profile </a> <span> or </span> <a href="#" class="cs-grey-bg"> View All Profiles </a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cs-blue-bg margintop40">
+  <div class="container">
+    <div class="margintop40 marginbot40 center gtcont">
+      <h2 class="colorwhite"> Got a Question? </h2>
+      <p class="padding20 row colorwhite">We're here to help. Check out our FAQs, Send us an email or call us at 1800 555 555</p>
+      <a href="#"> Contact Now </a> </div>
+  </div>
+</div> -->
+<!-- <link rel="stylesheet" type="text/css" href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.datepick/redmond.datepick.css">
+<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.datepick/jquery.plugin.js"></script> <script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.datepick/jquery.datepick.js"></script> 
+<script type="text/javascript">
+
+$('#journey_date').datepick({
+	 changeMonth: false,autoSize: true,minDate: 0,dateFormat: 'dd/mm/yyyy'});
+	 
+	 $('#journey_dater').datepick({
+	 changeMonth: false,autoSize: true,minDate: 0,dateFormat: 'dd/mm/yyyy'});
+</script>
+
+
+ <div class="container-fluid footerbg paddingtopbot40">
+  <div class="container">
+    <div class="row footer">
+      
+        		<div class="col-lg-4 col-md-6 col-sm-6  col-xs-12 log-subs fleft">
+			      <div class="logo"> <a href="index.html"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/logo.png"> </a> </div>
+			      <div class="ftr-subs margintop20 marginbot10 fleft lgrey-text">
+			        <form id="subscribe">   
+                        <p class="margintop20 colorwhite size17"> Subscribe to Newsletter </p>
+                        <input type="text" placeholder="Email Address" id="email_id" name="email_id" class="emaddr">
+                        <div id="send">
+                            <input type="submit" value="Sign Up" class="blue-bg white-text subs-brd">
+                        </div>
+                    </form>
+      </div>
+      <p class="colorwhite margintop20 size14 fleft">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit, de nomine. Duo Reges:</p>
+    </div>
+
+ -->			   <!--  <div class="col-lg-2 col-md-6 col-sm-6  col-xs-12">
+			      <h3 class="colorwhite size18 marginbot10"> Sitemap </h3>
+      <ul class="fleft ftr-ste">
+        <li> <a href="/food/food_list/"> Blog </a> </li>
+        <li> <a href="#"> Company Directory </a> </li>
+        <li> <a href="#"> Contact </a> </li>
+        <li> <a href="#"> Find a Candidate  </a> </li>
+        <li> <a href="#"> Find a Car </a> </li> 
+        <li> <a href="http://carpoolingscript.com/demo/help-us">  Help us </a> </li>
+      </ul>
+    </div> -->
+    
+<!-- <div class="hideall">
+   <div class="fleft width20p ftr-arti">
+      <div class="fb-page" data-href="https://www.facebook.com/pages/Carpoolingscript/807705419319976?ref=aymt_homepage_panel" data-width="180" data-height="370" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+      <div class="fb-xfbml-parse-ignore">
+      <blockquote cite="https://www.facebook.com/pages/Carpoolingscript/807705419319976?ref=aymt_homepage_panel">
+      <a href="https://www.facebook.com/pages/Carpoolingscript/807705419319976?ref=aymt_homepage_panel">Carpoolingscript</a>
+      </blockquote>
+      </div>
+      </div>
+   </div> 
+   <div class="fright width20p ftr-arti"> 
+    <a class="twitter-timeline" href="https://twitter.com/carpoolingscrip" data-widget-id="588318601595125760">Tweets by @carpoolingscrip</a> 
+    </div>
+
+</div>
+
+    </div>
+  </div>
+</div>
+
+ -->
+  <!--   <div class="container-fluid ftrbg padding10">
+  <div class="container">
+    <div class="row footer colorwhite">
+      <p class="size14 fleft"> &copy; 2015 Carpooling - All Rights Reserved. </p>
+      <div class="fright">
+        <ul class="fleft soc-ico">
+            <li> <a href="#"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/fb-ico.png"> </a> </li>
+            <li> <a href="#"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/tw-ico.png"> </a> </li>
+            <li> <a href="#"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/gp-ico.png"> </a> </li>
+            <li> <a href="#"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/in-ico.png"> </a> </li>
+            <li> <a href="#"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/pin-ico.png"> </a> </li>
+            <li> <a href="#"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/vi-ico.png"> </a> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+   -->         
+
+</body>
+</html>

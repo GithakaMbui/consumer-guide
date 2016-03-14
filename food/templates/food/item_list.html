@@ -2,7 +2,7 @@
 
     {% block content %}
     {#{{ costs }}#}
-        {% for cost in costs %}
+        <!-- {% for cost in costs %}
 
     <div class="post">
 
@@ -13,8 +13,26 @@
         <p>{{ cost.location|linebreaks }}</p>
       </div>
 
-        {% endfor %}
+        {% endfor %} -->
 
+<table class="table">
+<thead><th>Item</th><th>Price</th><th>Weight(KGS)</th><th>Retailer</th><th></th></thead>
+{% for cost in costs %}
+
+    <tr>
+
+        
+        <td>{{ cost.itemname }}</td>
+        <td> {{ cost.unitcost }}</td>
+        <td> {{ cost.weight }} </td>
+         <td> {{ cost.retailer }}</td>
+        
+    
+       <td>{{ cost.location|linebreaks }}</td>
+</tr>
+
+        {% endfor %}
+</table>
        
 
     {% endblock %}
