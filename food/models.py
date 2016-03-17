@@ -15,7 +15,7 @@ OUTLETS_CHOICES = (
 FOOD_CHOICES = (
 	('Jogoo Maize Flour', 'Jogoo Maize Flour'),
 	('EX Wheat flour', 'EX Wheat flour'),
-	('Mumias Sugar','Mumias Sugar'),
+	('Sugar','Sugar'),
 	('Kimbo Cooking Fat', 'Kimbo Cooking Fat'),
 	('Broadways Whole Loaf','Broadways Whole Loaf'),
 	)

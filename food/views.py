@@ -6,7 +6,10 @@ from .models import Forex
 from.models import Instititution
 from .forms import CostForm
 from .forms import UserForm, UserProfileForm
+from .forms import ComparisonForm
 from django.db.models import Count
+from django.db.models import F
+from django.views.generic.edit import FormView
 
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
@@ -296,6 +299,98 @@ def loans(request):
 	context = {'loanrate': loanrate}
 	return render(request, 'food/loan_rates.html', context)
 
+# def compare(request):
+# 	#item_comparison = Costs.objects.filter('outlet').annotate(higher_price= Count('unitcost'))
+# 	item_comparison = Costs.objects.filter(itemname = 'sugar').annotate(higher_price__gt= F('unitcost'))
+# 	context = {'item_comparison': item_comparison}
+# 	return render(request, 'food/price_comparison.html', context)
 
+# def price_comparison(request):
+# 	form = ComparisonForm()
+	# if request.method == "POST":
+	# 	comparison_form = ComparisonForm(request.POST, itemname= itemname)
+	# 	if comparison_form.is_valid():
+	# 		dict_items = {}
+	# 		items = itemname
+	# 		for supermarket in retailer:
+	# 			costs = Costs.objects.values('unitcost', 'itemname','retailer','weight').annotate(frequency = Count('unitcost')).order_by('-frequency').filter(supermarket=retailer,itemname=itemname)
+	# 			results = []
+	# 			processed_items = [] 
+	# 			for cost in costs:
+	# 				if cost['itemname'] not in processed_items:
+	# 					processed_items.append(cost['itemname'])
+	# 					temp = {
+	# 						"frequency": cost['frequency'],
+	# 						"itemname": cost['itemname'],
+	# 						"unitcost": cost['unitcost'],
+	# 						"retailer": cost['retailer'],
+	# 						"weight": cost['weight'],
+	# 					}
+	# 					for item in costs:
+	# 						if item['itemname'] == temp['itemname']:
+	# 							if item['frequency'] > temp['frequency']:
+	# 								temp['frequency'] = item['frequency']
+	# 								temp['unitcost'] = item['unitcost']
+	# 								temp['retailer'] = item['retailer']
+	# 								temp['weight'] = item['weight']
+	# 					results.append(temp)
+
+	# 					dict_items["supermarket"] = unitcost
+
+	# 					return redirect('price_comparison', itemname=itemname)
+
+	# 	else:
+
+			# comparison_form = ComparisonForm()
+
+
+	# return render(request, 'food/price_comparison.html', {'form': form })
+
+
+
+
+def price_comparison(request):
+	"""
+	Compare the price of different supermarkets
+	on a particular item
+	"""
+
+	results = []
+	item = ''
+	if request.method == "POST":
+		form = ComparisonForm(request.POST)
+
+		if form.is_valid():
+			retailers = form.cleaned_data.get('retailer')
+			item = form.cleaned_data.get('itemname')
+			
+			for retailer in retailers:
+				costs = Costs.objects.filter(
+					retailer=retailer, 
+					itemname__icontains=item).values('unitcost', 'itemname').annotate(
+						frequency = Count('unitcost')).order_by('-frequency')
+				
+				temp = {
+					'unitcost': 0,
+					'frequency':0,
+				}
+
+				for cost in costs:
+					if cost['frequency'] > temp['frequency']:
+						temp['unitcost'] = cost['unitcost']
+						temp['frequency'] = cost['frequency']
+
+				results.append({'unitcost': temp['unitcost'], 'retailer': retailer})
+
+			print results	
+
+
+
+	else:
+		form = ComparisonForm()
+
+
+
+	return render(request, 'food/price_comparison.html', {'form': form, 'item': item, 'results': results })
 
 

@@ -16,6 +16,7 @@ url(r'^food/forex_rates/$', views.forex_rates, name='forex_rates'),
 url(r'^food/forexby_bureau/$', views.forexby_bureau, name='forexby_bureau'),
 url(r'^food/loans/$', views.loans, name='loans'),
 url(r'^food/table_view/$', views.table_view, name='table_view'),
+url(r'^food/price_comparison/$', views.price_comparison, name='price_comparison'),
 url(r'^static/(?P<path>.*)$',
         'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 ]
