@@ -3,10 +3,12 @@ from django.utils import timezone
 from .models import Costs
 from .models import Loans
 from .models import Forex
-from.models import Instititution
+from.models import Bureau
 from .forms import CostForm
 from .forms import UserForm, UserProfileForm
 from .forms import ComparisonForm
+from .forms import ForexComparisonForm
+from .forms import LoanComparisonForm
 from django.db.models import Count
 from django.db.models import F
 from django.views.generic.edit import FormView
@@ -382,7 +384,7 @@ def price_comparison(request):
 
 				results.append({'unitcost': temp['unitcost'], 'retailer': retailer})
 
-			print results	
+			#print results	
 
 
 
@@ -394,3 +396,74 @@ def price_comparison(request):
 	return render(request, 'food/price_comparison.html', {'form': form, 'item': item, 'results': results })
 
 
+
+def forex_comparison(request):
+	results=[]
+	item = ''
+	
+	if request.method == "POST":
+		form = ForexComparisonForm(request.POST)
+
+		if form.is_valid():
+			bureau = form.cleaned_data.get('bureau')
+			item = form.cleaned_data.get('currency_name')
+
+
+			for bureaus in bureau:
+				b = Bureau.objects.get(inst_name=bureaus)
+				forex = Forex.objects.filter(bureau=b,currency_name=item).values( 'currency_name','buying_price', 'selling_price' )
+			
+
+				temp = {
+					'buying_price': 0,
+					'selling_price':0,
+				}
+
+				for forexs in forex:
+
+					temp['buying_price'] = forexs['buying_price']
+					temp['frequency'] = forexs['selling_price']
+					
+					
+
+				results.append({'buying_price': temp['buying_price'],'selling_price': temp['selling_price'] })
+
+
+
+	else:
+		form = ForexComparisonForm()
+
+	return render(request, 'food/forex_comparison.html', {'form': form, 'item': item, 'results': results})
+
+
+
+def loan_comparison(request):
+	results=[]
+	item = ''
+	
+	if request.method == "POST":
+		form = LoanComparisonForm(request.POST)
+
+		if form.is_valid():
+			bank = form.cleaned_data.get('bank')
+			item = form.cleaned_data.get('loan_name')
+
+
+			for banks in bank:
+				loan = Loans.objects.filter(bank=bank,loan_name=item).values( 'loan_name','loan_description', 'loan_amount' )
+			
+
+				temp = {
+					'loan_name': loan_name,
+					'loan_description': loan_description,
+					'loan_amount': loan_amount,
+				}
+
+				results.append({'loan_name': temp['loan_name'],'loan_description': temp['loan_description'], 'loan_amount': loan_amount})
+
+
+
+	else:
+		form = LoanComparisonForm()
+
+	return render(request, 'food/loan_comparison.html', {'form': form, 'item': item, 'results': results})

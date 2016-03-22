@@ -103,18 +103,18 @@ $(document).ready(function() {
       </div>      
 
       <div class="col-lg-6 col-md-6 col-sm-6 fleft padding20 grey-bg reg-main">
-        <h2 class="center marginbot40">  Current exchange rates  </h2>
-        <h3 class="center marginbot40"> To view by Bureau <a href="/food/forexby_bureau/">Click here</a> </h3>
+        <h3 class="center marginbot40">  Current forex rtaes  </h3>
+        <h3 class="center marginbot40"> To compare forex rates  <a href="/food/forex_comparison/">Click here</a> </h3>
 
          
 
    <table class="table">
-<thead><th>Currency Name</th><th>Buying Price</th><th>Selling price</th><th></th></thead>
+<thead><th>Bureau</th><th>Currency Name</th><th>Buying Price</th><th>Selling price</th><th></th></thead>
 {% for forexrates in forexrate %}
 
     <tr>
 
-        
+        <td>{{ forexrates.instititution }}</td>
         <td>{{ forexrates.currency_name }}</td>
         <td> {{ forexrates.buying_price }}</td>
          <td> {{ forexrates.selling_price }}</td>

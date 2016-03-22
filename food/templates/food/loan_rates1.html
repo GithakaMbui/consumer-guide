@@ -1,32 +1,64 @@
-<?php session_start(); 
-include("global_settings.php");
-?>
-
+{% load staticfiles %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <head>
-<title>Carpool</title>
+<title>FINFORM</title>
 <!-- must have -->
-    <link href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/css/bootstrap.css" type="text/css" rel="stylesheet" /> <link href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/css/bootstrap-theme.css" type="text/css" rel="stylesheet" /><link href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="{% static "food/js/jquery-1.7.1.min.js" %}"></script><script type="text/javascript" src="{% static "food/js/jquery-ui-1.8.23.min.js" %}"></script><script type="text/javascript" src="{% static "food/js/bootstrap.js" %}"></script><script src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places&language=en"></script>
+
+<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.validate.js"></script>
+<script type="text/javascript">
+
+var baseurl = "http://www.carpoolingscript.com/demo/";  
+var country = '';
+</script>
+
+<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/home.js"></script>
+<link href="{% static "food/css/style.css" %}" type="text/css" rel="stylesheet" />
+<link href="{% static "food/css/bannerscollection_kenburns.css" %}" type="text/css" rel="stylesheet" />
+<link href="{% static "food/css/bootstrap.css" %}" type="text/css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic' rel='stylesheet' type='text/css'>
 
 
-<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery-1.7.1.min.js"></script><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery-ui-1.8.23.min.js"></script><script type="text/javascript">
+
+<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.ui.touch-punch.min.js"></script><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/bannerscollection_kenburns.js"></script><!--[if IE]><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/excanvas.compiled"></script><![endif]-->
+<!-- must have -->
+	<script>
+		jQuery(function() {
+			jQuery('#bannerscollection_kenburns_generous').bannerscollection_kenburns({
+				skin: 'generous',
+				responsive:true,
+				width: 1920,
+				height: 680,
+				width100Proc:true,
+				thumbsOnMarginTop:14,
+				thumbsWrapperMarginTop: -110,
+				autoHideBottomNav:false,
+        showBottomNav: false,
+        showCircleTimer:false,
+        showCircleTimerIE8IE7:false,
+        showAllControllers:false
+			});					
+		});
+	</script>
+    <script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.ddslick.js"></script>    <script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/script.js"></script>    
+<script type="text/javascript">
 $(document).ready(function(){
   $(".my-account-button").click(function(){
-  $(".my-account-details").fadeToggle("fast", function(){
-    if($(".my-account-details").css('display') == "none")
-    $(".my-account-button").removeClass("active");
-    else
-    $(".my-account-button").addClass("active");
-  });
+	$(".my-account-details").fadeToggle("fast", function(){
+	  if($(".my-account-details").css('display') == "none")
+		$(".my-account-button").removeClass("active");
+	  else
+		$(".my-account-button").addClass("active");
+	});
   });
 });
-</script>
-<link rel="shortcut icon" href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/favicon.ico">
+</script>  
+<link rel="shortcut icon" href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/favicon.ico">  
+  
 </head>
 
 <body>
@@ -41,83 +73,64 @@ $(document).ready(function(){
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
 <style type="text/css"> iframe[id^='twitter-widget-0']{ width:280px !important;} </style>
 
-
-                                        
-<div class="container-main header-bg">
+	<div class="container-fluid pull-top topbg paddingtopbot10">
   <div class="container">
-     <div class="logo"> 
-     
-     <a href="http://www.carpoolingscript.com/demo/home"id="logo" class="navbar-brand"><img src="http://www.carpoolingscript.com/demo/uploads/logo/thumbnails/user1_logo_1444714009.png"style="width:255px; height:53px;"> </a> </div>
-        <div class="pull-right head-rht">  
-                
-                         <ul class="top-nav new-top-nav pull-right">
-             <!-- <li> <a href="http://localhost/demoproject/index.html" class="top-signup"> Home</a> </li>            
-              <li> <a href="http://localhost/demoproject/posttrip.php" class=""> Post Trip</a> </li>-->
-            <ul class= "navset"> 
-             <li> <a href="http://localhost/demoproject/mytrips.php" class="top-signup">My Trips</a> </li>
-             <li> <a href="http://localhost/demoproject/vehicles.php" class="top-signup">My Vehicles</a> </li>
-             <li> <a href="http://localhost/demoproject/settings.php" class="top-signup">Settings</a> </li>
-             <li> <a href="http://localhost/demoproject/findride.php" class="top-signup">Find Ride</a> </li>
-            <li> <a href="http://localhost/demoproject/posttrip.php" class="top-signup"> Post Trip </a> </li>
-            <li> <a href="http://localhost/demoproject/posttrip.php" class="top-signup"> Ratings </a> </li>
-            <li> <a href="http://localhost/demoproject/logout.php" class="top-signup"> logout</a> </li>
- 
-                </ul> 
-                        </ul>
-
+    <div class="row">  
+      <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 tophdr"> <a href="/food/index/" id="logo" class="navbar-brand"> <img src="{% static "img/finformlogo.png" %}" alt="logo"" style="width:255px; height:53px;"> </a>  </div>
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">        
+                             <ul class="top-nav new-top-nav">
+             <li> <a href="/food/item_list/" class="top-signup"> FOOD PRICES </a> </li>
+              <li> <a href="/food/loans/" class="top-signup"> LOANS </a> </li>              
+		
+					  <li> <a href="/food/forex_rates/" class="top-signup"> FOREX </a> </li>
+             <li> <a href="/food/register/" class="top-signup"> REGISTER </a> </li>
+             <li> <a href="/food/login/" class=""> LOGIN </a> </li>
+					 
+           				</ul>
+                        </ul>                     
+        </div>
     </div>
   </div>
-</div><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.validate.js"></script>
-<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/travel-details-rules.js"></script>
-<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/notification/goNotification.js"></script><link href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/notification/goNotification.css" rel="stylesheet" type="text/css">
-<script>
-$(document).ready(function() {  
-  
-        $('#phone').attr('readonly', false);
-    $('#phone').removeClass('disable');
-        
-        
-      
-  });
-</script>
-<div class="container-fluid margintop40">
-  
-  <div class="container">
-    <div class="row margintop40">  
-      <div class="" style="margin-right:auto; margin-left:auto;">
-        <ul class="reg-cont margintop40">
-          <li class="margintop40">
-          <div class="panel panel-info">
+</div>
 
-           <?php
-           $email = $_SESSION['login_user'];
+    <div class="container-fluid padding0 banner">
 
-            $query = mysqli_query($connection, "select * from users where email='$email'");
+    <div id="bannerscollection_kenburns_generous">
+
+    	<div class="myloader"></div>
+        <!-- CONTENT -->
+        <ul class="bannerscollection_kenburns_list">
+
+	       		<li data-initialZoom="1" data-finalZoom="1" data-horizontalPosition="center" data-verticalPosition="left" data-text-id="#bannerscollection_kenburns_photoText1" ><img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/slider001.jpg" alt="" width="2500" height="919" /></li>
             
-            foreach ($query as $row) {
-             ?>
+	          <li data-initialZoom="1" data-finalZoom="1" data-horizontalPosition="center" data-verticalPosition="left" data-text-id="#bannerscollection_kenburns_photoText2" ><img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/slider002.jpg" alt="" width="2500" height="919" /></li>
 
-            <div class="panel-heading">
-              <h3 class="panel-title"><?php echo "Hello, "; ?> <?php echo  ucfirst($row['fname']);?></h3>
+	          <li data-text-id="#bannerscollection_kenburns_photoText3" data-horizontalPosition="center" data-verticalPosition="top" data-initialZoom="1" data-finalZoom="1"><img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/slider003.jpg" alt="" width="2500" height="782" /></li>       
+        
+        </ul>        
+        <!-- TEXTS -->
 
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
-                
-                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                  <dl>
-                    <dt>DEPARTMENT:</dt>
-                    <dd>Administrator</dd>
-                    <dt>HIRE DATE</dt>
-                    <dd>11/12/2013</dd>
-                    <dt>DATE OF BIRTH</dt>
-                       <dd>11/12/2013</dd>
-                    <dt>GENDER</dt>
-                    <dd>Male</dd>
-                  </dl>
-                </div>-->
-                <div class=" col-md-9 col-lg-9 "> 
+        <div id="bannerscollection_kenburns_photoText1" class="bannerscollection_kenburns_texts">
+          <div class="bannerscollection_kenburns_text_line textElement11_generousFullWidth" data-initial-left="200" data-initial-top="50" data-final-left="200" data-final-top="320" data-duration="0.5" data-fade-start="0" data-delay="0">Make informed choices as consumer</div>
+       </div>   
+                 
+        <div id="bannerscollection_kenburns_photoText2" class="bannerscollection_kenburns_texts">
+        	<div class="bannerscollection_kenburns_text_line textElement21_generousFullWidth" data-initial-left="200" data-initial-top="50" data-final-left="200" data-final-top="280" data-duration="0.5" data-fade-start="0" data-delay="0.5">Useful and relevant financial info at your fingettips &amp;  <br>economical way!</div>         
+        </div>
+       
+        <div id="bannerscollection_kenburns_photoText3" class="bannerscollection_kenburns_texts">
+       		<div class="bannerscollection_kenburns_text_line textElement31_generousFullWidth" data-initial-left="200" data-initial-top="50" data-final-left="200" data-final-top="320" data-duration="0.5" data-fade-start="0" data-delay="0">Save time and money while shopping</div>
+        </div> 
+    
+                                            
+    
+
+    <div class="bottom-bar padding10">       
+        <div class="search-bar">
+
+	        <h2> Find the various loan rates in banking institutions </h2>
+
+          <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     
 
@@ -140,29 +153,126 @@ $(document).ready(function() {
                      
                     
                   </table>
+        </div>      
+    </div>
 
-                  <?php
-                    }
-                  ?>
-                  
-                  <a href="personalinfo.php" class="btn btn-primary">Update Profile</a>
-                  <a href="#" class="btn btn-primary">view profiles</a>
-                </div>
+</div>  
+</div> 
+ <div class="container-fluid padding0 banner-search">
+
+	    <div class="bottom-bar padding10">  
+
+	      <div class="search-bar">
+
+	        <h2> Find a Ride </h2>
+
+	        <form method="get" id="searchform"  action="http://www.carpoolingscript.com/demo/search">
+            <input type="text" placeholder="From"  name="source" id="source" class="srcdes marker-ico"> 
+            <input type="hidden" name="formlatlng" id="formlatlng"  value=""/>
+            <input type="text"  placeholder="To"   name="destination" id="destination" class="srcdes marker-ico" />
+            <input type="hidden" name="tolatlng" id="tolatlng"  value=""/>
+            <input type="text" placeholder="DD/MM/YYYY" id="journey_dater" class="srcdes cal-ico" onchange="getfrequency();"  name="journey_date" >
+             
+             <input type="hidden" name="frequency" id="frequency"  value=""/>
+			<input type="submit"  value="Search"   class="ind-src-but"/>       
+               </form>
+
+	      </div>     
+
+	    </div>
+
+    </div><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/tinycarousel/jquery.tinycarousel.min.js"></script><link href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/tinycarousel/tinycarousel.css " rel="stylesheet" type="text/css">
+<script>
+$(document).ready(function() {
+$('#slider1').tinycarousel({
+	start: 1, // where should the carousel start?
+	display: 4, // how many blocks do you want to move at a time?
+	axis: 'X', // vertical or horizontal scroller? 'x' or 'y' .
+	controls: true, // show left and right navigation buttons?
+	pager: false, // is there a page number navigation present?
+	interval: true, // move to the next block on interval.
+	intervaltime: 3000, // interval time in milliseconds.
+	animation: true, // false is instant, true is animate.
+	duration: 1000, // how fast must the animation move in milliseconds?
+	callback: null, // function that executes after every move
+	}); 
+});
+</script>
+</head>
+
+<body>
+
+
+<!-- <div class="container-fluid">
+  <div class="container">
+    <div class="row line4 margintop40"></div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="container">
+    <div class="row margintop40">
+      <div class="how-but"> Loan Rates </div>
+      <div class="marginbot10">
+        <div class="how-it-lft fleft dplnon"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/car-img.png"> </div>
+        <div class="how-it-lft fright rrecent how-it">
+          <h4 class="size22 marginbot10"> Forex </h4>
+          <ul class="hw-it-wks">
+            <li>
+              <div class="how-i-img how-search-ico"> </div>
+              <div class="how-i-cnt fright">
+                <h4 class="marginbot10"> Find your Perfect Car Travelers  </h4>
+                <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                           de nomine. Duo Reges:</p>
               </div>
+            </li>
+            <li>
+              <div class="how-i-img how-contact-ico"> </div>
+              <div class="how-i-cnt fright">
+                <h4 class="marginbot10"> Contact Car Travellers </h4>
+                <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+              </div>
+            </li>
+            <li>
+              <div class="how-i-img how-hire-ico"> </div>
+              <div class="how-i-cnt fright">
+                <h4 class="marginbot10"> Hire with Confidence </h4>
+                <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+              </div>
+            </li>
+          </ul>
+          <div class="how-i-link"> <a href="#" class="cs-blue-bg"> View all Car Travelers </a> <span> or </span> <a href="#" class="cs-grey-bg"> Post a Car </a> </div>
+        </div>
+      </div>
+    </div>
+    <div class="row line4 margintop40 marginbot40"></div>
+    <div class="row">
+      <div class="how-it-lft fright dplnon"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/index-how-it-img.png"> </div>
+      <div class="how-it-lft fleft rrecent how-it">
+        <h4 class="size22 marginbot10"> For Car Travelers </h4>
+        <ul class="hw-it-wks">
+          <li>
+            <div class="how-i-img how-edit-ico"> </div>
+            <div class="how-i-cnt fright">
+              <h4 class="marginbot10"> Create a Profile </h4>
+              <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
             </div>
-           <div class="panel-footer">
-                  <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                  <span class="pull-right">
-                      <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                      <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                  </span>
-              </div>
-            
-          </diSSv>
+          </li>
+          <li>
+            <div class="how-i-img how-job-ico"> </div>
+            <div class="how-i-cnt fright">
+              <h4 class="marginbot10"> Got a Job </h4>
+              <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+            </div>
+          </li>
+          <li>
+            <div class="how-i-img how-star-ico"> </div>
+            <div class="how-i-cnt fright">
+              <h4 class="marginbot10"> Become a Star </h4>
+              <p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit,                                            de nomine. Duo Reges:</p>
+            </div>
           </li>
         </ul>
-      </div>     
-      <!-- Right -->
+        <div class="row how-i-link"> <a href="#" class="cs-blue-bg"> Create a Profile </a> <span> or </span> <a href="#" class="cs-grey-bg"> View All Profiles </a> </div>
+      </div>
     </div>
   </div>
 </div>
@@ -173,34 +283,50 @@ $(document).ready(function() {
       <p class="padding20 row colorwhite">We're here to help. Check out our FAQs, Send us an email or call us at 1800 555 555</p>
       <a href="#"> Contact Now </a> </div>
   </div>
-</div>
+</div> -->
+<!-- <link rel="stylesheet" type="text/css" href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.datepick/redmond.datepick.css">
+<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.datepick/jquery.plugin.js"></script> <script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.datepick/jquery.datepick.js"></script> 
+<script type="text/javascript">
 
- <!-- <div class="container-fluid footerbg paddingtopbot40">
+$('#journey_date').datepick({
+	 changeMonth: false,autoSize: true,minDate: 0,dateFormat: 'dd/mm/yyyy'});
+	 
+	 $('#journey_dater').datepick({
+	 changeMonth: false,autoSize: true,minDate: 0,dateFormat: 'dd/mm/yyyy'});
+</script>
+
+
+ <div class="container-fluid footerbg paddingtopbot40">
   <div class="container">
     <div class="row footer">
       
-            <div class="col-lg-4 col-md-6 col-sm-6  col-xs-12 log-subs fleft">
-            <div class="logo"> <a href="index.html"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/logo.png"> </a> </div>
-            <div class="ftr-subs margintop20 marginbot10 fleft lgrey-text">
-              <p class="margintop20 colorwhite size17"> Subscribe to Newsletter </p>
-              <input type="text" placeholder="Email Address" class="emaddr">
-              <input type="submit" value="Sign Up" class="blue-bg white-text subs-brd">
+        		<div class="col-lg-4 col-md-6 col-sm-6  col-xs-12 log-subs fleft">
+			      <div class="logo"> <a href="index.html"> <img src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/img/logo.png"> </a> </div>
+			      <div class="ftr-subs margintop20 marginbot10 fleft lgrey-text">
+			        <form id="subscribe">   
+                        <p class="margintop20 colorwhite size17"> Subscribe to Newsletter </p>
+                        <input type="text" placeholder="Email Address" id="email_id" name="email_id" class="emaddr">
+                        <div id="send">
+                            <input type="submit" value="Sign Up" class="blue-bg white-text subs-brd">
+                        </div>
+                    </form>
       </div>
       <p class="colorwhite margintop20 size14 fleft">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ille, ut dixi, vitiose. Non laboro, inquit, de nomine. Duo Reges:</p>
     </div>
 
-          <div class="col-lg-2 col-md-6 col-sm-6  col-xs-12">
-            <h3 class="colorwhite size18 marginbot10"> Sitemap </h3>
+ -->			   <!--  <div class="col-lg-2 col-md-6 col-sm-6  col-xs-12">
+			      <h3 class="colorwhite size18 marginbot10"> Sitemap </h3>
       <ul class="fleft ftr-ste">
-        <li> <a href="#"> Blog </a> </li>
+        <li> <a href="/food/food_list/"> Blog </a> </li>
         <li> <a href="#"> Company Directory </a> </li>
         <li> <a href="#"> Contact </a> </li>
         <li> <a href="#"> Find a Candidate  </a> </li>
-        <li> <a href="#"> Find a Car </a> </li>       
+        <li> <a href="#"> Find a Car </a> </li> 
+        <li> <a href="http://carpoolingscript.com/demo/help-us">  Help us </a> </li>
       </ul>
-    </div>
+    </div> -->
     
-<div class="hideall">
+<!-- <div class="hideall">
    <div class="fleft width20p ftr-arti">
       <div class="fb-page" data-href="https://www.facebook.com/pages/Carpoolingscript/807705419319976?ref=aymt_homepage_panel" data-width="180" data-height="370" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
       <div class="fb-xfbml-parse-ignore">
@@ -220,8 +346,8 @@ $(document).ready(function() {
   </div>
 </div>
 
-
-    <div class="container-fluid ftrbg padding10">
+ -->
+  <!--   <div class="container-fluid ftrbg padding10">
   <div class="container">
     <div class="row footer colorwhite">
       <p class="size14 fleft"> &copy; 2015 Carpooling - All Rights Reserved. </p>
@@ -237,6 +363,8 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
-</div> -->
+</div>
+   -->         
+
 </body>
 </html>

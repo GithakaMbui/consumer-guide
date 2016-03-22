@@ -6,12 +6,15 @@
 <head>
 <title>Carpool</title>
 <!-- must have -->
-    <link href="{% static "food/css/bootstrap.css" %}"type="text/css" rel="stylesheet" />	<link href="{% static "food/css/bootstrap-theme.css" %}" type="text/css" rel="stylesheet" /><link href="{% static "food/css/style.css" %}" type="text/css" rel="stylesheet" />
+    <link href="{% static "food/css/bootstrap.css" %}" type="text/css" rel="stylesheet" />
+    	<link href="{% static "food/css/bootstrap-theme.css" %}" type="text/css" rel="stylesheet" />
+      <link href="{% static "food/css/style.css" %}" type="text/css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic' rel='stylesheet' type='text/css'>
 
 
-<script type="text/javascript" src="{% static "food/js/jquery-1.7.1.min.js" %}"></script><script type="text/javascript" src="{% static "food/js/jquery-ui-1.8.23.min.js" %}"></script><script type="text/javascript">
+<script type="text/javascript" src="{% static "food/js/jquery-1.7.1.min.js" %}"></script>
+<script type="text/javascript" src="{% static "food/js/jquery-ui-1.8.23.min.js" %}"></script><script type="text/javascript">
 $(document).ready(function(){
   $(".my-account-button").click(function(){
 	$(".my-account-details").fadeToggle("fast", function(){
@@ -40,15 +43,9 @@ $(document).ready(function(){
 
 
                                         
-<div class="container-main header-bg">
-  <div class="container">
-     <div class="logo"> 
-     
-     <a href="/food/index/"id="logo" class="navbar-brand"><img src="{% static "img/finformlogo.png" %}"style="width:255px; height:53px;"> </a> </div>
-        <div class="pull-right head-rht">  
-                  
-       	                 <ul class="top-nav new-top-nav pull-right">
-                         <li> <a href="/food/food_list/" class="top-signup"> FOOD PRICES </a> </li>
+<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">        
+                             <ul class="top-nav new-top-nav">
+             <li> <a href="/food/food_list/" class="top-signup"> FOOD PRICES </a> </li>
               <li> <a href="/food/loans/" class="top-signup"> LOANS </a> </li>              
     
             <li> <a href="/food/forex_rates/" class="top-signup"> FOREX </a> </li>
@@ -63,17 +60,14 @@ $(document).ready(function(){
                   {% else %}
                   Hello user.Login for better features!
                   {% endif %} </p> </li>
-                <!-- <li>  <a href="http://www.carpoolingscript.com/demo/register" class="ride"> POST A TRIP </a> </li>
-                <li> <a href="http://www.carpoolingscript.com/demo/login" class=""> Login </a> </li>
-                <li> <a href="http://www.carpoolingscript.com/demo/register" class="top-signup"> REGISTER </a> </li> -->
-                
-                </ul>
-                        </ul>
-    </div>
+           
+                  </ul>
+                        </ul>                     
+        </div>
   </div>
-</div><script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/jquery.validate.js"></script>
-<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/travel-details-rules.js"></script>
-<script type="text/javascript" src="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/notification/goNotification.js"></script><link href="http://www.carpoolingscript.com/demo/carpooling/themes/carpooling/assets/js/notification/goNotification.css" rel="stylesheet" type="text/css">
+</div><script type="text/javascript" src="{% static "food/js/jquery.validate.js" %}"></script>
+<script type="text/javascript" src="{% static "food/js/travel-details-rules.js" %}"></script>
+<script type="text/javascript" src="{% static "food/js/notification/goNotification.js" %}"></script><link href="{% static "food/js/notification/goNotification.css" %}" rel="stylesheet" type="text/css">
 <script>
 $(document).ready(function() {	
 	
@@ -100,30 +94,52 @@ $(document).ready(function() {
       </div>      
 
       <div class="col-lg-6 col-md-6 col-sm-6 fleft padding20 grey-bg reg-main">
-        <h3 class="center marginbot40">  The prices of assorted food items.  </h3>
-        <h3 class="center marginbot40">  To compare the price of a food item in different supermarkets.<a href="/food/price_comparison/">Click here</a>  </h3>
-        <h3 class="center marginbot40"> Help us improve.<a href="/food/add_product/">Click here</a> </h3>
+        <h2 class="center marginbot40">  Compare prices in different outlets </h2>
+        <!-- <h3 class="center marginbot40"> To change outlet <a href="/food/add_product/">Click here</a> </h3> -->
 
          
 
-        <table class="table">
-<thead><th>Item</th><th>Price</th><th>Weight(KGS)</th><th>Retailer</th><th></th></thead>
-{% for cost in costs %}
+  
+   
+<!-- <thead><th>Instititution Name</th><th>Buying Price</th><th>Selling price</th><th></th></thead> -->
 
-    <tr>
+ <form id="category_form" method="post" action="/food/loan_comparison/">
+    {% csrf_token %}
 
-        
-        <td>{{ cost.itemname }}</td>
-        <td> {{ cost.unitcost }}</td>
-        <td> {{ cost.weight }} </td>
-         <td> {{ cost.retailer }}</td>
-        
+      <label>Bank</label>
+      {{form.bank}}
+      <label>Loan</label>
+      {{form.loan_name}}
     
-       <td>{{ cost.location|linebreaks }}</td>
-</tr>
+      <input type="submit" name="submit" value="Compare Prices" />
+  </form>
 
-        {% endfor %}
-</table>
+<br>
+
+ 
+ {% if item %}
+      Item: {{item}}
+     <table class="table">
+     <thead>
+       <th>Retailer</th>
+       <th>Cost</th>
+     </thead>
+      {% for result in results %}
+      <tr>
+
+      <td>{{ result.retailer }}</td>
+      {% if result.unitcost == 0 %}
+      <td>Item name has not been registered</td>
+      {% else %}
+      <td>{{result.unitcost}}</td>
+      {% endif %}
+      </tr>
+      {% endfor %}
+
+    
+
+    </table>
+{% endif %}    
       </div>
       <!-- Right -->
     </div>
@@ -143,7 +159,7 @@ $(document).ready(function() {
     <div class="row footer">
       
         		<div class="col-lg-4 col-md-6 col-sm-6  col-xs-12 log-subs fleft">
-			      <div class="logo"> <a href="index.html"> <img src="/food/index/"> </a> </div>
+			      <div class="logo"> <a href="/food/index"> <img src="{% static "img/finformlogo.png" %}"> </a> </div>
 			      <div class="ftr-subs margintop20 marginbot10 fleft lgrey-text">
 			        <p class="margintop20 colorwhite size17"> Subscribe to Newsletter </p>
 			        <input type="text" placeholder="Email Address" class="emaddr">

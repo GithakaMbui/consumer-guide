@@ -26,6 +26,55 @@ WEIGHT_CHOICES = (
 	('500', '500 mg'),
 	)
 
+BUREAU_CHOICES = (
+
+	('DTBBureau', 'DTBBureau'),
+	('SkyBureau', 'SkyBureau'),
+	('Nationalbureau', 'Nationalbureau'),
+	('IMBureau', 'IMBureau'),
+	('FinaBureau', 'FinaBureau'),
+
+	)
+
+CURRENCY_CHOICES = (
+
+	('USD', 'USD'),
+	('EURO', 'EURO'),
+	('TZSH', 'TZSH'),
+	('UGSH', 'UGSH'),
+	('BPD', 'BPD'),
+	('BPD', 'BPD')
+
+	)
+
+
+BANK_CHOICES = (
+
+	('Barclays', 'Barclays'),
+	('KCB', 'KCB'),
+	('Stanchart', 'Stanchart'),
+	('Co-op', 'Co-op'),
+	('Uwezo', 'Uwezo'),
+	('Uwezo', 'Uwezo')
+
+	)
+
+
+LOAN_CHOICES = (
+
+	('House Mortgage', 'House Mortgage'),
+	('Biashara', 'Biashar'),
+	('Personal', 'Personal'),
+	('Chama', 'Chama'),
+	('Car', 'Car'),
+	('Commercial', 'Commercial')
+
+	)
+
+
+
+
+
 
 
 class Costs(models.Model):
@@ -75,33 +124,35 @@ class Banks(models.Model):
 
 
 class Loans(models.Model):
-	loan_name = models.CharField(max_length=250)
+	loan_name = models.CharField(max_length=250, choices=LOAN_CHOICES)
 	loan_description = models.CharField(max_length=400)
 	requirements = models.CharField(max_length=300)
-	bank = models.ForeignKey(Banks, on_delete=models.CASCADE)
+	loan_amount = models.IntegerField(default = 50000)
+	bank = models.CharField(max_length=300 ,  default = "Barclays", blank=True, null=True, choices=BANK_CHOICES)
+	#bank = models.ForeignKey(Banks)
 
 
 	def __unicode__(self):
 		return self.loan_name
 
 
-class Instititution(models.Model):
+class Bureau(models.Model):
 	#inst_id = models.IntegerField()
-	inst_name = models.CharField(max_length=300, default = "SKY", blank=True, null=True)
+	inst_name = models.CharField(max_length=300, default = "SkyBureau", blank=True, null=True, choices=BUREAU_CHOICES)
 	webpage = models.CharField(max_length=300)
 	#type_name = models.ForeignKey(Institution_type, on_delete=models.CASCADE)
-	Institution_type = models.CharField(max_length=300)
+	bureau_type = models.CharField(max_length=300)
 
 	def __unicode__(self):
 		return self.inst_name
 
 
 class Forex(models.Model):
-	currency_name = models.CharField(max_length=300)
+	currency_name = models.CharField(max_length=300, choices=CURRENCY_CHOICES)
 	buying_price = models.IntegerField()
 	selling_price = models.IntegerField()
 	#inst_id = models.ForeignKey(Instititution, on_delete=models.CASCADE)
-	Instititution = models.ForeignKey(Instititution, on_delete=models.CASCADE)
+	bureau = models.ForeignKey(Bureau, on_delete=models.CASCADE)
 
 	def __unicode__(self):
 		return self.currency_name

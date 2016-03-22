@@ -5,6 +5,17 @@ from .models import (
 	UserProfile,
 	OUTLETS_CHOICES
 )
+
+from .models import (
+	Bureau,
+	Forex,
+	BUREAU_CHOICES
+)
+from .models import (
+	Loans,
+	BANK_CHOICES
+)
+
 from django.contrib.auth.models import User
 
 class CostForm(forms.ModelForm):
@@ -26,6 +37,8 @@ class UserProfileForm(forms.ModelForm):
 		model = UserProfile
 		fields = ('website', 'picture')
 
+
+
 class ComparisonForm(forms.ModelForm):
 	retailer = forms.MultipleChoiceField( 
 		widget=forms.CheckboxSelectMultiple, choices=OUTLETS_CHOICES)
@@ -44,5 +57,47 @@ class ComparisonForm(forms.ModelForm):
 
 		return data	
 
+
+
+
+class ForexComparisonForm(forms.ModelForm):
+	bureau = forms.MultipleChoiceField(
+		widget=forms.CheckboxSelectMultiple, choices=BUREAU_CHOICES)
+
+
+	class Meta:
+		model = Forex
+		fields = ('currency_name',)
+
+
+	def clean_bureau(self):
+
+		data = self.cleaned_data['bureau']
+		if len(data) < 2:
+			raise forms.ValidationError("You must select atleast two forex bureaus")
+
+
+		return data
+
+
+
+class LoanComparisonForm(forms.ModelForm):
+	bank = forms.MultipleChoiceField(
+		widget=forms.CheckboxSelectMultiple, choices=BANK_CHOICES)
+
+
+	class Meta:
+		model = Loans
+		fields = ('loan_name',)
+
+
+	def clean_bureau(self):
+
+		data = self.cleaned_data['banks']
+		if len(data) < 2:
+			raise forms.ValidationError("You must select atleast two banks")
+
+
+		return data
 
 		
