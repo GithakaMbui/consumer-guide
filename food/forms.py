@@ -43,9 +43,13 @@ class ComparisonForm(forms.ModelForm):
 	retailer = forms.MultipleChoiceField( 
 		widget=forms.CheckboxSelectMultiple, choices=OUTLETS_CHOICES)
 
+
+	itemname = forms.ModelMultipleChoiceField(queryset = Costs.objects.all(),
+		 widget  = forms.CheckboxSelectMultiple, )
+
 	class Meta:
 		model = Costs 
-		fields = ('itemname',)
+		fields = ('retailer',)
 	
 
 	def clean_retailer(self):

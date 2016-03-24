@@ -136,10 +136,28 @@ $(document).ready(function() {
       </tr>
       {% endfor %}
 
+  
+
+    </table>
+  {% endif %}   
+     <table class="table">
+     <thead>
+       <th>Retailer</th>
+       <th>Total</th>
+     </thead>
+      {% for result in results %}
+      <tr>
+
+      <td>{{ result.retailer }}</td>
+      <td>{{result.total}}</td>
+    
+      </tr>
+      {% endfor %}
+
     
 
     </table>
-{% endif %}    
+   
       </div>
       <!-- Right -->
     </div>

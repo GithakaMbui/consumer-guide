@@ -356,44 +356,49 @@ def price_comparison(request):
 	Compare the price of different supermarkets
 	on a particular item
 	"""
-
 	results = []
-	item = ''
+
 	if request.method == "POST":
 		form = ComparisonForm(request.POST)
-
+		print(form.is_valid())
+		print (form.errors)
+		print (request.POST)
 		if form.is_valid():
 			retailers = form.cleaned_data.get('retailer')
 			item = form.cleaned_data.get('itemname')
-			
+
 			for retailer in retailers:
-				costs = Costs.objects.filter(
+
+				total = 0
+
+				for item in items:
+			
+					costs = Costs.objects.filter(
 					retailer=retailer, 
 					itemname__icontains=item).values('unitcost', 'itemname').annotate(
 						frequency = Count('unitcost')).order_by('-frequency')
 				
-				temp = {
-					'unitcost': 0,
-					'frequency':0,
-				}
+					temp = {
+						'unitcost': 0,
+						'frequency':0,
+					}
 
-				for cost in costs:
-					if cost['frequency'] > temp['frequency']:
-						temp['unitcost'] = cost['unitcost']
-						temp['frequency'] = cost['frequency']
-
-				results.append({'unitcost': temp['unitcost'], 'retailer': retailer})
-
-			#print results	
+					for cost in costs:
+						if cost['frequency'] > temp['frequency']:
+							temp['unitcost'] = cost['unitcost']
+							temp['frequency'] = cost['frequency']
 
 
+					total = total + temp['unitcost']
+					results.append({'total': total, 'retailer': retailer})
+
+			
+		
 
 	else:
 		form = ComparisonForm()
 
-
-
-	return render(request, 'food/price_comparison.html', {'form': form, 'item': item, 'results': results })
+	return render(request, 'food/price_comparison.html', {'form': form,'results': results })
 
 
 
