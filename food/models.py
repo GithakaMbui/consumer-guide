@@ -18,6 +18,7 @@ FOOD_CHOICES = (
 	('Sugar','Sugar'),
 	('Kimbo Cooking Fat', 'Kimbo Cooking Fat'),
 	('Broadways Whole Loaf','Broadways Whole Loaf'),
+	('Salt', 'Salt'),
 	)
 
 WEIGHT_CHOICES = (

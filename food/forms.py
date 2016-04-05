@@ -3,7 +3,7 @@ from django import forms
 from .models import (
 	Costs,
 	UserProfile,
-	OUTLETS_CHOICES
+	OUTLETS_CHOICES, FOOD_CHOICES
 )
 
 from .models import (
@@ -56,6 +56,31 @@ class ComparisonForm(forms.ModelForm):
 
 
 		return data	
+
+
+
+class CartComparisonForm(forms.ModelForm):
+	retailer = forms.MultipleChoiceField( 
+		widget=forms.CheckboxSelectMultiple, choices=OUTLETS_CHOICES)
+
+
+	itemname = forms.MultipleChoiceField(choices = FOOD_CHOICES,
+		 widget  = forms.CheckboxSelectMultiple, )
+
+	class Meta:
+		model = Costs 
+		# fields = ('itemname',)
+		exclude = ['unitcost', 'weight', 'dateprovided','location','itemname', 'retailer']
+	
+
+	# def clean_retailer(self):
+
+	# 	data = self.cleaned_data['retailer']
+	# 	if len(data) < 2:
+	# 		raise forms.ValidationError("You must select at least two retailers")
+
+	# 	return data	
+
 
 
 
